@@ -1,4 +1,4 @@
-# Laravel 7 伺服器和應用程式健康狀況監視和通知
+# Laravel 8 伺服器和應用程式健康狀況監視和通知
 
 引入 pragmarx 的 health 套件來擴增健康狀態監視功能可提供近即時的伺服器和應用程式狀態資訊，健康狀態監視功能對服務運作的各方面來說都非常重要。
 
@@ -30,8 +30,8 @@ $ php artisan health:panel
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/8iU5zKE.png)
+![](https://i.imgur.com/IA3qQTU.png)
 > 使用網頁控制面板監視伺服器和應用程式健康情況
 
-![](https://i.imgur.com/5LxH6xX.png)
+![](https://i.imgur.com/xdKart5.png)
 > 使用 Artisan 指令列監視伺服器和應用程式健康情況
