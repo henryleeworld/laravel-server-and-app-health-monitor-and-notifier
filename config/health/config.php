@@ -50,7 +50,8 @@ return [
             // 'Adyen',
             // 'Broadcasting',
             'Cache',
-            'Certificate',
+            // config'Certificate',
+            // 'CheckoutCom',
             'ConfigurationCached',
             'Database',
             'DebugMode',
@@ -60,8 +61,10 @@ return [
             // 'DocuSign',
             // 'ElasticsearchConnectable',
             'EnvExists',
+            'Extensions',
             'Filesystem',
             'Framework',
+            // 'HealthPanel',
             // 'Horizon',
             // 'Http',
             'Https',
@@ -92,6 +95,7 @@ return [
             // 'SeeTickets',
             // 'Sendinblue',
             'ServerLoad',
+            // 'ServerVars', ----------- You also need to enable the server-vars route
             'ServerUptime',
             // 'Sshd',
             'Supervisor',
@@ -142,9 +146,9 @@ return [
         | Options:
         |   0 = Cache Forever
         |   false = Disables caching
-        |   30 = (integer) Minutes to cache
+        |   30 = (integer) Seconds to cache
         */
-        'minutes' => config('app.debug') === true ? false : 1,
+        'seconds' => config('app.debug') === true ? false : 60,
     ],
 
     'database' => [
@@ -193,6 +197,11 @@ return [
             'resource' => false,
         ],
 
+        'notify_from' => [
+            'web' => false,
+            'console' => true,
+        ],
+
         'subject' => 'Health Status',
 
         'action-title' => 'View App Health',
@@ -214,7 +223,7 @@ return [
         ],
 
         'users' => [
-            'model' => App\User::class,
+            'model' => App\Models\User::class,
 
             'emails' => ['admin@mydomain.com'],
         ],
@@ -263,6 +272,9 @@ return [
     'string' => [
         'glue' => '-',
         'ok' => 'OK',
+        'warning' => 'WARNING',
+        'critical' => 'CRITICAL',
+        'unknown' => 'UNKNOWN',
         'fail' => 'FAIL',
     ],
 
@@ -331,6 +343,14 @@ return [
                 'action' => "{$namespace}@config",
                 'middleware' => [],
             ],
+
+            /// This is a dangerous route, when enabling, check if it is properly protected
+            //[
+            //    'uri' => "{$route_prefix}/server-vars",
+            //    'name' => 'pragmarx.health.server-vars',
+            //    'action' => "{$namespace}@serverVars",
+            //    'middleware' => [\PragmaRX\Health\Http\Middleware\LocallyProtected::class],
+            //],
         ],
     ],
 

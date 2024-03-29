@@ -1,6 +1,6 @@
-name: API Checker
-abbreviation: apichecker
-checker: PragmaRX\Health\Checkers\Https
+name: Remote Laravel Health Panel
+abbreviation: health-panel
+checker: PragmaRX\Health\Checkers\HealthPanel
 notify: true
 column_size: 3
 timeout_message: "[TIMEOUT] A request to %s took %s seconds. Timeout is set to %s seconds."
@@ -9,10 +9,9 @@ roundtrip_timeout: 10
 targets:
   - default:
       urls:
-        - https://api.whatever.com/v1.1/authorization/token:
-            method: POST
+        - "http://your-site.com/health/check":
+            method: GET
             auth:
               - "{{ config('services.whatever.api.username') }}"
               - "{{ config('services.whatever.api.password') }}"
               - basic
-            is_json: true
